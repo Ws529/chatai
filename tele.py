@@ -25,16 +25,16 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(chat_id=update.effective_chat.id, text="I'm a bot, please talk to me!")
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    user_message = update.message.text
+    # user_message = update.message.text
     # logging.info(f"Pesan dari pengguna: {user_message}")
-    response = chai(user_message)
+    response = chai(update.message.text)
     await context.bot.send_message(chat_id=update.effective_chat.id, text=response)
     user_id = update.effective_user.id
-    save_chat_to_history(user_message, response)
-    logging.info(f"Pesan dari pengguna dengan ID {user_id}: {user_message}")
+    save_chat_to_history(update.message.text, response)
+    logging.info(f"Pesan dari pengguna dengan ID {user_id}: {update.message.text}")
 
 # async def log_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    # user_message = update.message.text
+    # user_message = 
 
 if __name__ == '__main__':
     application = Application.builder().token(TOKEN).build()
